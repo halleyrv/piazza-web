@@ -3,7 +3,7 @@ class User < ApplicationRecord
   validates :email,
    format: { with: URI::MailTo::EMAIL_REGEXP },
    uniqueness: { case_sensitive: false }
-  has_many :membershipts, dependent: :destroy 
+  has_many :memberships, dependent: :destroy 
   has_many :organizations, through: :memberships
 
   before_validation :strip_extraneous_spaces
