@@ -1,7 +1,7 @@
 require "test_helper"
 
 class UserTest < ActiveSupport::TestCase
-  test "requres a name" do
+  test "requires a name" do
     @user = User.new(name: "", email: "johndoe@example.com", password: "password")
     assert_not @user.valid?
     @user.name = "John"
@@ -33,16 +33,4 @@ class UserTest < ActiveSupport::TestCase
     assert_equal "jd@example.com", @user.email
   end
 
-  test "password length must be between 8 and ActiveModel`s maximum" do
-    @user = User.new(name: "John", email: "jd@example.com", password: "")
-
-    assert_not @user.valid?
-
-    @user.password = "password"
-    assert @user.valid?
-
-    max_length = ActiveModel::SecurePassword::MAX_PASSWORD_LENGTH_ALLOWED
-    @user.password = "a" * (max_length +1)
-    assert_not @user.valid?
-  end
 end

@@ -1,4 +1,6 @@
 class User < ApplicationRecord
+  include Authentication
+  
   validates :name, presence: true
   validates :email,
    format: { with: URI::MailTo::EMAIL_REGEXP },
@@ -8,8 +10,6 @@ class User < ApplicationRecord
 
   before_validation :strip_extraneous_spaces
 
-  has_secure_password
-  validates :password, presence: true, length: { minimum: 8 }
 
   private
 
