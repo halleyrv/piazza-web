@@ -5,7 +5,7 @@ module Authenticate
     before_action :authenticate
     before_action :require_login, unless: :logged_in?
 
-    helper_method :logged_in
+    helper_method :logged_in?
   end
 
   class_methods do
